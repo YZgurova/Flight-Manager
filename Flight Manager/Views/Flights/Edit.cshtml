@@ -1,0 +1,82 @@
+﻿@model FlightEditModel
+
+<form class="mx-auto half-width" asp-controller="Product" method="post" asp-action="Edit">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="Id">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="LocationFrom"></label>
+        <input asp-for="LocationFrom" class="form-control" />
+        <span asp-validation-for="LocationFrom" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LocationTo"></label>
+        <input asp-for="LocationTo" class="form-control" />
+        <span asp-validation-for="LocationTo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Takeoff"></label>
+        <input asp-for="Takeoff" class="form-control" />
+        <span asp-validation-for="Takeoff" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Landing"></label>
+        <input asp-for="Landing" class="form-control" />
+        <span asp-validation-for="Landing" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PlaneId"></label>
+        <input asp-for="PlaneId" class="form-control" />
+        <span asp-validation-for="PlaneId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="planeType"></label>
+        <input asp-for="planeType" class="form-control" />
+        <span asp-validation-for="planeType" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PilotName"></label>
+        <input asp-for="PilotName" class="form-control" />
+        <span asp-validation-for="PilotName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CountOfFreePosition"></label>
+        <input asp-for="CountOfFreePosition" class="form-control" />
+        <span asp-validation-for="CountOfFreePosition" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="BusinessClassFreePositions"></label>
+        <input asp-for="BusinessClassFreePositions" class="form-control" />
+        <span asp-validation-for="BusinessClassFreePositions" class="text-danger"></span>
+    </div>
+    <hr class="hr-2 bg-dark half-width mt-4" />
+    <div class="form-group">
+        <label asp-for="planeType"></label>
+        <span asp-validation-for="planeType" class="text-danger"></span>
+    </div>
+    <hr class="hr-2 bg-dark half-width mt-4" />
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+        <label class="form-check-label" for="inlineRadio1">Food</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+        <label class="form-check-label" for="inlineRadio2">Domestic</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+        <label class="form-check-label" for="inlineRadio3">Health</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option1">
+        <label class="form-check-label" for="inlineRadio4">Cosmetic</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option1" checked>
+        <label class="form-check-label" for="inlineRadio5">Other</label>
+    </div>
+    <hr class="hr-2 bg-dark half-width mt-4" />
+    <div class="button-holder mt-2 d-flex justify-content-center">
+        <button type="submit" class="btn chushka-bg-color">Edit</button>
+    </div>
+</form>
