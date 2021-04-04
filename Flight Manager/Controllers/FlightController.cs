@@ -11,8 +11,10 @@ namespace Flight_Manager.Controllers
     public class FlightController : Controller
     {
         private readonly IFlightService flightService;
+        
         public FlightController(IFlightService flightService)
         {
+
             this.flightService = flightService;
         }
 
