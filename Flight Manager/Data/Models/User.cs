@@ -15,6 +15,5 @@ namespace Flight_Manager.Data.Models
         public string LastName { get; set; }
         public string PersonalId { get; set; }
         public string Addres { get; set; }
-        public Role Role { get; set; }
     }
 }

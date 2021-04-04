@@ -1,6 +1,7 @@
 using Flight_Manager.Common;
 using Flight_Manager.Data;
 using Flight_Manager.Data.Models;
+using Flight_Manager.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,9 +33,10 @@ namespace Flight_Manager
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+            services.AddTransient<IFlightService, FlightService>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
