@@ -13,15 +13,18 @@ namespace Flight_Manager.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IFlightService flightService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IFlightService flightService)
         {
             _logger = logger;
+            this.flightService = flightService;
         }
 
         public IActionResult Index()
-        {           
-            return View();
+        {
+            var flights = flightService.All();
+            return View(flights);
         }
 
         public IActionResult Privacy()
