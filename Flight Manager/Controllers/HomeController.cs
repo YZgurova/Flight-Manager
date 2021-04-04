@@ -1,4 +1,5 @@
 ﻿using Flight_Manager.Models;
+using Flight_Manager.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -19,7 +20,7 @@ namespace Flight_Manager.Controllers
         }
 
         public IActionResult Index()
-        {
+        {           
             return View();
         }
 

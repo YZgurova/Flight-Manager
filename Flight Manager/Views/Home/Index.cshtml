@@ -15,14 +15,14 @@
 }
 else
 {
-    @if (User.IsInRole(Roles.Admin))
+    @if (User.IsInRole(Roles.Admin.ToUpper()))
     {
         <div class="container-fluid text-center">
             <h2>Greetings, admin!</h2>
             <h4>Enjoy your work today!</h4>
         </div>
     }
-    else if (User.IsInRole(Roles.User))
+    else if (User.IsInRole(Roles.User.ToUpper()))
     {
         <div class="container-fluid text-center">
             <h2>Greetings, @User.Identity.Name!</h2>
@@ -32,28 +32,63 @@ else
     <hr class="hr-2 bg-dark" />
     <div class="container-fluid product-holder">
         <div class="row d-flex justify-content-around">
-            @foreach (var flight in Model)
-            {
-                <div class="product col-md-2 chushka-bg-color rounded-top rounded-bottom">
-                    <h5 class="text-center mt-3">@flight.PlaneId</h5>
-                    <hr class="hr-1 bg-white" />
-                    <p class="text-white text-center">
-                        @flight.LocationFrom
-                    </p>
-                    <p class="text-white text-center">
-                        @flight.LocationTo
-                    </p>
-                    <hr class="hr-1 bg-white" />
-                    <h6 class="text-center text-white mb-3">@flight.CountOfFreePosition</h6>
-                    @if (User.IsInRole(Roles.Admin))
+            <table id="myTable" class="table bg-white">
+                <thead>
+                    <tr>
+                        <th>
+                            LocationFrom
+                        </th>
+                        <th>
+                            LocationTo
+                        </th>
+                        <th>
+                            Landing
+                        </th>
+                        <th>
+                            PlaneId
+                        </th>
+                        <th>
+                            PilotName
+                        </th>
+                        <th>
+                            CountOfFreePositions
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
                     {
-                        <a class="nav-link nav-link-white" asp-area="" asp-controller="Product" asp-action="Edit" asp-route-id="@flight.PlaneId">Edit Product</a>
-                        <a class="nav-link nav-link-white" asp-area="" asp-controller="Product" asp-action="Delete" asp-route-id="@flight.PlaneId">Delete Product</a>
-                    }
-                </div>
-            }
-        </div>
+            <tr>
+                <td>
+                    @item.LocationFrom
+                </td>
+                <td>
+                    @item.LocationTo
+                </td>
+                <td>
+                    @item.Landing
+                </td>
+                <td>
+                    @item.PlaneId
+                </td>
+                <td>
+                    @item.PilotName
+                </td> 
+                <td>
+                    @item.CountOfFreePosition
+                </td>
+                <td>
+                    <a asp-action="EditUser" asp-route-id="@item.PlaneId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.PlaneId">Delete</a>
+                </td>
+            </tr>}
+                </tbody>
+            </table>
+            </div>
+        }
     </div>
+    
 }
 
 

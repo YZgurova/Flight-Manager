@@ -11,7 +11,7 @@ namespace Flight_Manager.Data
     public class ApplicationDbContext : IdentityDbContext
     {
        // internal IList<FlightViewModel> Flights;
-       public DbSet<Flight> Flights { get; set; }
+        public DbSet<Flight> Flights { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

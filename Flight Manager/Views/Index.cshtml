@@ -1,5 +1,5 @@
 ﻿@page
-@model IndexModel
+@model FlightViewModel
 @{
     ViewData["Title"] = "Index";
 }
@@ -16,6 +16,9 @@
                         <a class="nav-link nav-link-white" href="/">Home</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link nav-link-white" href="/">Information about past flights</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link nav-link-white" href="~/Home/login">Login</a>
                     </li>
                     <li class="nav-item">
@@ -29,8 +32,7 @@
         <div class="jumbotron mt-3 chushka-bg-color">
             <h1>Welcome to Flight Manager Universal Air Company</h1>
             <hr class="bg-white" />
-            <h3><a class="nav-link-dark" href="/Home/login">Login</a> if you have an account.</h3>
-            <h3><a class="nav-link-dark" href="~/Home/register">Register</a> if you don't.</h3>
+            <p>@Model.PilotName</p>
         </div>
     </main>
     <footer>
