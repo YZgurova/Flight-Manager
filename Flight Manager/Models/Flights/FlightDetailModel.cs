@@ -8,6 +8,7 @@ namespace Flight_Manager.Models.Flights
 {
     public class FlightDetailModel
     {
+        public int Id { get; set; }
         public string LocationFrom { get; set; }
 
         public string LocationTo { get; set; }

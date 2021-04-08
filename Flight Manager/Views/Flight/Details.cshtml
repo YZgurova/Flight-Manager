@@ -41,9 +41,9 @@
                 <h3 class="text-left">Vacancies in business class : @Model.BusinessClassFreePositions</h3>
             </div>  
         
-        <div class="product-action-holder mt-4 d-flex justify-content-around">
-            <a class="btn chushka-bg-color" href="/product/order/">Order</a>
-        </div>
+            <div class="product-action-holder mt-4 d-flex justify-content-around">
+                <a class="btn chushka-bg-color" asp-controller="Reservation" asp-action="UpdateAvailableTicket" asp-route-id="@Model.Id">Order</a>
+            </div>
     </main>
     <footer>
         <div class="container-fluid chushka-bg-color">
