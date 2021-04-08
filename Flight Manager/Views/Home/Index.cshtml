@@ -9,8 +9,7 @@
 {<div class="jumbotron mt-3 chushka-bg-color">
         <h1>Welcome to Flight Manager Universal Air Company</h1>
         <hr class="bg-white" />
-        <h3><a class="nav-link-dark" href="/Home/login">Login</a> if you have an account.</h3>
-        <h3><a class="nav-link-dark" href="~/Home/register">Register</a> if you don't.</h3>
+
     </div>
 }
 else
@@ -29,6 +28,7 @@ else
             <h4>Feel free to view and order any of our products.</h4>
         </div>
     }
+}
     <hr class="hr-2 bg-dark" />
     <div class="container-fluid product-holder">
         <div class="row d-flex justify-content-around">
@@ -59,36 +59,46 @@ else
                 <tbody>
                     @foreach (var item in Model)
                     {
-            <tr>
-                <td>
-                    @item.LocationFrom
-                </td>
-                <td>
-                    @item.LocationTo
-                </td>
-                <td>
-                    @item.Landing
-                </td>
-                <td>
-                    @item.PlaneId
-                </td>
-                <td>
-                    @item.PilotName
-                </td> 
-                <td>
-                    @item.CountOfFreePosition
-                </td>
-                <td>
-                    <a asp-action="EditUser" asp-route-id="@item.PlaneId">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@item.PlaneId">Delete</a>
-                </td>
-            </tr>}
+                    <tr>
+                        <td>
+                            @item.LocationFrom
+                        </td>
+                        <td>
+                            @item.LocationTo
+                        </td>
+                        <td>
+                            @(item.Landing-item.Takeoff)
+                        </td>
+                        <td>
+                            @item.PlaneId
+                        </td>
+                        <td>
+                            @item.PilotName
+                        </td>
+                        <td>
+                            @item.CountOfFreePosition
+                        </td>
+                        @if (User.IsInRole(Roles.Admin.ToUpper()))
+                        {
+                            <td>
+                                <a style="color:black" asp-action="Edit" asp-controller="Flight" asp-route-id="@item.Id">Edit</a> |
+                                <a style="color:black" asp-action="Delete" asp-controller="Flight" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                            <a style="color:black" asp-action="Details" asp-controller="Flight" asp-route-id="@item.Id">Info</a>
+                            </td>
+                        }
+                    </tr>
+}
                 </tbody>
             </table>
-            </div>
+        </div>
         }
     </div>
-    
-}
+
+
 
 

@@ -19,6 +19,7 @@ namespace Flight_Manager.Services
         => this.context.Flights
             .Select(p => new FlightViewModel()
             {
+                Id=p.Id,
                 PlaneId = p.PlaneId,
                 LocationFrom = p.LocationFrom,
                 LocationTo = p.LocationTo,
@@ -40,6 +41,7 @@ namespace Flight_Manager.Services
                 Takeoff = model.Takeoff,
                 Landing = model.Landing,
                 planeType = model.planeType,
+                PlaneId=model.PlaneId,
                 PilotName = model.PilotName,
                 CountOfFreePosition = model.CountOfFreePosition,
                 BusinessClassFreePositions = model.BusinessClassFreePositions
@@ -60,11 +62,13 @@ namespace Flight_Manager.Services
             var flight = this.context.Flights.Find(id);
             return new FlightDetailModel()
             {
+                
                 LocationFrom = flight.LocationFrom,
                 LocationTo = flight.LocationTo,
                 Takeoff = flight.Takeoff,
                 Landing = flight.Landing,
                 planeType = flight.planeType,
+                PlaneId=flight.PlaneId,
                 PilotName = flight.PilotName,
                 CountOfFreePosition = flight.CountOfFreePosition,
                 BusinessClassFreePositions = flight.BusinessClassFreePositions
@@ -79,9 +83,12 @@ namespace Flight_Manager.Services
             flight.Takeoff = model.Takeoff;
             flight.Landing = model.Landing;
             flight.planeType = model.planeType;
+            flight.PlaneId = model.PlaneId;
             flight.PilotName = model.PilotName;
             flight.CountOfFreePosition = model.CountOfFreePosition;
             flight.BusinessClassFreePositions = model.BusinessClassFreePositions;
+            this.context.Flights.Update(flight);
+            this.context.SaveChanges();
         }
     }
 }

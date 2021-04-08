@@ -8,6 +8,7 @@ namespace Flight_Manager.Models.Flights
 {
     public class FlightViewModel
     {
+        public int Id { get; set; }
         public string LocationFrom { get; set; }
 
         public string LocationTo { get; set; }

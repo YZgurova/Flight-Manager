@@ -29,7 +29,21 @@ namespace Flight_Manager.Controllers
             return Redirect("/");
         }
 
-        [HttpGet(nameof(Edit) + "/{id}")]
+        public IActionResult Edit(int id)
+        {
+            var flight = this.flightService.GetByID(id);
+            return this.View(new FlightEditModel() {
+                LocationFrom = flight.LocationFrom,
+                LocationTo = flight.LocationTo,
+                Takeoff = flight.Takeoff,
+                Landing = flight.Landing,
+                planeType = flight.planeType,
+                PilotName = flight.PilotName,
+                CountOfFreePosition = flight.CountOfFreePosition,
+                BusinessClassFreePositions = flight.BusinessClassFreePositions
+            });
+        }
+        [HttpPost]
         public IActionResult Edit(FlightEditModel model, int id)
         {
             this.flightService.Update(model, id);
