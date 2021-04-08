@@ -16,6 +16,6 @@ namespace Flight_Manager.Services
         
         void Update(FlightEditModel model, int id);
         
-        void Delete(int id);
+        void UpdateAvailableTicket(int id);
     }
 }

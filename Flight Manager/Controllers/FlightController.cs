@@ -39,9 +39,10 @@ namespace Flight_Manager.Controllers
         [HttpDelete(nameof(Delete) + "/{id}")]
         public IActionResult Delete(int id)
         {
-            this.flightService.Delete(id);
+            this.flightService.UpdateAvailableTicket(id);
             return Redirect("/");
         }
+        
 
     }
 }
