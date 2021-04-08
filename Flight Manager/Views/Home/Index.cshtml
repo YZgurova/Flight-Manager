@@ -14,14 +14,14 @@
 }
 else
 {
-    @if (User.IsInRole(Roles.Admin.ToUpper()))
+    @if (User.IsInRole(Roles.Admin))
     {
         <div class="container-fluid text-center">
             <h2>Greetings, admin!</h2>
             <h4>Enjoy your work today!</h4>
         </div>
     }
-    else if (User.IsInRole(Roles.User.ToUpper()))
+    else if (User.IsInRole(Roles.User))
     {
         <div class="container-fluid text-center">
             <h2>Greetings, @User.Identity.Name!</h2>
@@ -59,44 +59,43 @@ else
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <td>
-                            @item.LocationFrom
-                        </td>
-                        <td>
-                            @item.LocationTo
-                        </td>
-                        <td>
-                            @(item.Landing-item.Takeoff)
-                        </td>
-                        <td>
-                            @item.PlaneId
-                        </td>
-                        <td>
-                            @item.PilotName
-                        </td>
-                        <td>
-                            @item.CountOfFreePosition
-                        </td>
-                        @if (User.IsInRole(Roles.Admin.ToUpper()))
-                        {
+                        <tr>
                             <td>
-                                <a style="color:black" asp-action="Edit" asp-controller="Flight" asp-route-id="@item.Id">Edit</a> |
-                                <a style="color:black" asp-action="Delete" asp-controller="Flight" asp-route-id="@item.Id">Delete</a>
+                                @item.LocationFrom
                             </td>
-                        }
-                        else
-                        {
                             <td>
-                            <a style="color:black" asp-action="Details" asp-controller="Flight" asp-route-id="@item.Id">Info</a>
+                                @item.LocationTo
                             </td>
-                        }
-                    </tr>
+                            <td>
+                                @(item.Landing-item.Takeoff)
+                            </td>
+                            <td>
+                                @item.PlaneId
+                            </td>
+                            <td>
+                                @item.PilotName
+                            </td>
+                            <td>
+                                @item.CountOfFreePosition
+                            </td>
+                            @if (User.IsInRole(Roles.Admin))
+                             {
+                                <td>
+                                    <a style="color:black" asp-action="Edit" asp-controller="Flight" asp-route-id="@item.Id">Edit</a> |
+                                    <a style="color:black" asp-action="Delete" asp-controller="Flight" asp-route-id="@item.Id">Delete</a>
+                                </td>
+                             }
+                            else
+                            {
+                                <td>
+                                <a style="color:black" asp-action="Details" asp-controller="Flight" asp-route-id="@item.Id">Info</a>
+                                </td>
+                            }
+                        </tr>
 }
                 </tbody>
             </table>
         </div>
-        }
     </div>
 
 

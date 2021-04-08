@@ -1,5 +1,6 @@
 ﻿using Flight_Manager.Models.Flights;
 using Flight_Manager.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,18 +18,21 @@ namespace Flight_Manager.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Create(FlightInputModel model)
         {
             this.flightService.Create(model);
             return Redirect("/");
         }
 
+        [Authorize]
         public IActionResult Edit(int id)
         {
             var flight = this.flightService.GetByID(id);
@@ -43,7 +47,9 @@ namespace Flight_Manager.Controllers
                 BusinessClassFreePositions = flight.BusinessClassFreePositions
             });
         }
+
         [HttpPost]
+        [Authorize] //prowerqwa dali si w profil ili ne
         public IActionResult Edit(FlightEditModel model, int id)
         {
             this.flightService.Update(model, id);
@@ -51,13 +57,19 @@ namespace Flight_Manager.Controllers
         }
 
         [HttpDelete(nameof(Delete) + "/{id}")]
+        [Authorize]
         public IActionResult Delete(int id)
         {
             this.flightService.Delete(id);
             return Redirect("/");
         }
 
-        
+        public IActionResult Details(int id)
+        {
+            var flight = this.flightService.GetByID(id);
+            return this.View(flight);           
+        }
+
 
     }
 }

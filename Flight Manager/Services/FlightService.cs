@@ -90,5 +90,10 @@ namespace Flight_Manager.Services
             this.context.Flights.Update(flight);
             this.context.SaveChanges();
         }
+
+        public void UpdateAvailableTIckets(int id, int allTickets, int businessTickets)
+        {
+            
+        }
     }
 }
