@@ -98,5 +98,10 @@ namespace Flight_Manager.Services
             this.context.Flights.Update(flight);
             this.context.SaveChanges();
         }
+
+        public int FreePositions(int id)
+        {
+            return this.context.Flights.Find(id).CountOfFreePosition;
+        }
     }
 }

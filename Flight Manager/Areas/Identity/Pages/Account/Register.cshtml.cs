@@ -15,10 +15,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Flight_Manager.Data;
+using Flight_Manager.Common;
 
 namespace Flight_Manager.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
+    [Authorize(Roles =GlobalConstants.Roles.Admin)]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<User> _signInManager;
@@ -48,6 +50,15 @@ namespace Flight_Manager.Areas.Identity.Pages.Account
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
+            [Required]
+            [Display(Name = "FirstName")]
+            public string FirstName { get; set; }
+            [Required]
+            [Display(Name = "LastName")]
+            public string LastName { get; set; }
+            [Required]
+            [Display(Name = "PersonalId")]
+            public string PersonalId { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
@@ -73,7 +84,7 @@ namespace Flight_Manager.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = Input.Email, Email = Input.Email };
+                var user = new User { UserName = Input.Email, FirstName= Input.FirstName, LastName=Input.LastName, PersonalId=Input.PersonalId, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 var roles = new IdentityUserRole<string> ();
                 var admin= context.Roles.FirstOrDefault(x => x.Name == "ADMIN");
@@ -91,9 +102,8 @@ namespace Flight_Manager.Areas.Identity.Pages.Account
                 await context.UserRoles.AddAsync(roles);
                 await context.SaveChangesAsync();
                 if (result.Succeeded)
-                {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(returnUrl);                   
+                { 
+                    return Redirect("/Employee/All");                   
                 }
                 foreach (var error in result.Errors)
                 {

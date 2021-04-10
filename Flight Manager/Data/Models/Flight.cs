@@ -12,17 +12,17 @@ namespace Flight_Manager.Data.Models
 
         public Flight()
         {
-
+             
         }
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Please type from where will be this flight")]
         public string LocationFrom { get; set; }
-
+        [Required(ErrorMessage = "Please type from where will be end this flight")]
         public string LocationTo { get; set; }
-
+        
         public DateTime Takeoff { get; set; }
-
+        
         public DateTime Landing { get; set; }
         public string PlaneId { get; set; }
         

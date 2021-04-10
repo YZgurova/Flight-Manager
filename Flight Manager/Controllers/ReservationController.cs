@@ -20,12 +20,27 @@ namespace Flight_Manager.Controllers
         {
             if (this.flightService.GetByID(id).CountOfFreePosition-1<0)
             {
-                return Redirect("/Flight/Details/" + id);
+                ModelState.AddModelError(String.Empty, "No more free positions");                
+            }
+            if (!ModelState.IsValid)
+            {
+                return Redirect("/Reservation/Unsuccessfull");
             }
             this.flightService.UpdateAvailableTickets(id);
-            return Redirect("/");
+            return Redirect("/Reservation/Successfull");
         }
 
+        
+        public IActionResult Unsuccessfull()
+        {
+            return View();
+        }
 
+        
+        public IActionResult Successfull()
+        {
+            return View();
+        }
+        
     }
 }

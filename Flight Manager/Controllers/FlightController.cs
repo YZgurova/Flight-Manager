@@ -28,6 +28,10 @@ namespace Flight_Manager.Controllers
         [Authorize]
         public IActionResult Create(FlightInputModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
             this.flightService.Create(model);
             return Redirect("/");
         }

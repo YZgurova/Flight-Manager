@@ -22,33 +22,43 @@
                 <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <ul class="navbar-nav right-side">
+                    <ul class="navbar-nav right-side">
+                        @if (User.IsInRole(Roles.Admin))
+                        {
                             <li class="nav-item">
-                                <a class="nav-link nav-link-white" asp-area="" asp-action="Index" asp-controller="Home">Home</a>
+                                <a class="nav-link nav-link-white" asp-area="" asp-action="All" asp-controller="Employee">Employees</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-link-white" asp-area="" asp-controller="Flight" asp-action="Create">Add flight</a> 
-                                
-                            </li>                                
-                            <li class="nav-item">
+                        }
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-white" asp-area="" asp-action="Index" asp-controller="Home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-white" asp-area="" asp-controller="Flight" asp-action="Create">Add flight</a>
+
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link nav-link-white" asp-area="" asp-action="Index" asp-controller="Home">Information about past flights</a>
-                            </li>                                                 
+                        </li>
+                        <li class="nav-item">
+                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                <button type="submit" class="nav-link nav-link-white">Logout</button>
+                            </form>
+                        </li>
+                        @if (User.IsInRole(Roles.Admin))
+                        {
                             <li class="nav-item">
-                                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                    <button type="submit" class="nav-link nav-link-white">Logout</button>
-                                </form>
+                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
                             </li>
-                        </ul>
+                        }
+                    </ul>
                     }
 
                     else
                     {
                         <ul class="navbar-nav right-side">
                         </ul>
-                        <ul class="navbar-nav left-side">
-                            <li class="nav-item">
-                                <a class="nav-link nav-link-white" asp-area="Identity" asp-page="/Account/Register">Register</a>
-                            </li>
+
+                        <ul class="navbar-nav left-side">                            
                             <li class="nav-item">
                                 <a class="nav-link nav-link-white" asp-area="Identity" asp-page="/Account/Login">Login</a>
                             </li>
