@@ -11,10 +11,18 @@ namespace Flight_Manager.Services
     public class FlightService : IFlightService
     {
         private readonly ApplicationDbContext context;
+        /// <summary>
+        /// Конструктор на FlightService
+        /// </summary>
+        /// <param name="context"></param>
         public FlightService(ApplicationDbContext context)
         {
             this.context = context;
         }
+        /// <summary>
+        /// Взима всички полети в списък.
+        /// </summary>
+        /// <returns></returns>
         public IList<FlightViewModel> All()
         => this.context.Flights
             .Select(p => new FlightViewModel()
@@ -32,6 +40,10 @@ namespace Flight_Manager.Services
             })
             .ToList();
 
+        /// <summary>
+        /// Създава полет в базата.
+        /// </summary>
+        /// <param name="model"></param>
         public void Create(FlightInputModel model)
         {
             var flight = new Flight()
@@ -50,6 +62,10 @@ namespace Flight_Manager.Services
             this.context.SaveChanges();
         }
 
+        /// <summary>
+        /// Изтрива даден полет по ID
+        /// </summary>
+        /// <param name="id"></param>
         public void Delete(int id)
         {
             var flight = this.context.Flights.Find(id);
@@ -57,6 +73,11 @@ namespace Flight_Manager.Services
             this.context.SaveChanges();
         }
 
+        /// <summary>
+        /// Връща полета и данните за него. Намира я по ID(уникално)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public FlightDetailModel GetByID(int id)
         {
             var flight = this.context.Flights.Find(id);
@@ -74,7 +95,11 @@ namespace Flight_Manager.Services
                 BusinessClassFreePositions = flight.BusinessClassFreePositions
             };
         }
-
+        /// <summary>
+        /// Намира полета по ID и прави промени по данните и.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="id"></param>
         public void Update(FlightEditModel model, int id)
         {
             var flight = this.context.Flights.Find(id);
@@ -90,7 +115,10 @@ namespace Flight_Manager.Services
             this.context.Flights.Update(flight);
             this.context.SaveChanges();
         }
-
+        /// <summary>
+        /// Променя резервирани билети
+        /// </summary>
+        /// <param name="id"></param>
         public void UpdateAvailableTickets(int id)
         {
             var flight = this.context.Flights.Find(id);
@@ -98,7 +126,11 @@ namespace Flight_Manager.Services
             this.context.Flights.Update(flight);
             this.context.SaveChanges();
         }
-
+        /// <summary>
+        /// Връща броя на празната позиция
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public int FreePositions(int id)
         {
             return this.context.Flights.Find(id).CountOfFreePosition;

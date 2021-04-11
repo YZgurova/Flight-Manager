@@ -12,6 +12,10 @@ namespace Flight_Manager.Controllers
     public class FlightController : Controller
     {
         private readonly IFlightService flightService;
+        /// <summary>
+        /// Контролер на FlightService
+        /// </summary>
+        /// <param name="flightService"></param>
         public FlightController(IFlightService flightService)
         {
             this.flightService = flightService;
@@ -23,7 +27,10 @@ namespace Flight_Manager.Controllers
         {
             return View();
         }
-
+        /// <summary>
+        /// Извежда изгледа за създаване
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [Authorize]
         public IActionResult Create(FlightInputModel model)
@@ -35,7 +42,11 @@ namespace Flight_Manager.Controllers
             this.flightService.Create(model);
             return Redirect("/");
         }
-
+        /// <summary>
+        /// Променя и пренасочва изгледа.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize]
         public IActionResult Edit(int id)
         {
@@ -52,14 +63,25 @@ namespace Flight_Manager.Controllers
             });
         }
 
+        /// <summary>
+        /// Проверява дали е в профил или не
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
-        [Authorize] //proverqva dali si v profil ili ne
+        [Authorize] 
         public IActionResult Edit(FlightEditModel model, int id)
         {
             this.flightService.Update(model, id);
             return Redirect("/");
         }
 
+        /// <summary>
+        /// Изтрива и пренасочва изгледа
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete(nameof(Delete) + "/{id}")]
         [Authorize]
         public IActionResult Delete(int id)
