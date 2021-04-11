@@ -53,7 +53,7 @@ namespace Flight_Manager.Controllers
         }
 
         [HttpPost]
-        [Authorize] //prowerqwa dali si w profil ili ne
+        [Authorize] //proverqva dali si v profil ili ne
         public IActionResult Edit(FlightEditModel model, int id)
         {
             this.flightService.Update(model, id);
