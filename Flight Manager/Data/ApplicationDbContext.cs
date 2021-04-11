@@ -13,6 +13,19 @@ namespace Flight_Manager.Data
        // internal IList<FlightViewModel> Flights;
         public DbSet<Flight> Flights { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Flight>(flight =>
+            {
+                flight.HasMany(f => f.Reservations)
+                .WithOne(r => r.Flight)
+                .HasForeignKey(r => r.FlightId)
+                .OnDelete(DeleteBehavior.Cascade);
+            });
+            base.OnModelCreating(builder);
+        }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

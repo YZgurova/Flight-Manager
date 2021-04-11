@@ -38,6 +38,8 @@ namespace Flight_Manager
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
             services.AddTransient<IFlightService, FlightService>();
+            services.AddTransient<IReservationService, ReservationService>();
+            services.AddTransient<IEmailSender, EmailSender>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
