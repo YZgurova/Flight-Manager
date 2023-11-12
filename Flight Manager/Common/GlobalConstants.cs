@@ -11,8 +11,8 @@
 
         public static class Email
         {
-            public const string ApiKey = "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";
-            public const string SystemEmail = "iordanka_zgurova@abv.bg";
+            public const string ApiKey = "//";
+            public const string SystemEmail = "//";
             
         }
     }
